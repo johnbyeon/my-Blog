@@ -45,27 +45,46 @@ function App() {
   }
   //모달페이지가 보이게/안보이게 작업하기 위한 스테이트
   const [modal,setModal] = useState(false);
-  
+  const [modalStatus,setModalStatus] = useState(null);
+  function handleTitle(index){
+
+      if(!modal){
+        setModal(true);
+        setModalStatus(index);
+      
+      }else if(modalStatus == index){
+        setModal(false);
+        setModalStatus(null);
+      }else {
+         setModalStatus(index);
+      }
+  }
   return (
     <div className='App'>
       <div className='black-bg'>
           react + vite로 만드는 블로그
       </div>
       {/* <h4 style={{color:'red',fontSize:'16px'}}>{post}</h4> */}
-      <button onClick={()=>{
-        const sortedTitle = [...title].sort();
-        setTitle(sortedTitle);
-      }}>글 정렬하기</button>
+      <button onClick={()=>chageTitle()}>글 정렬하기</button>
       <div className="list"> 
-     {title.map((t, i) => (
-          <div key={i}>
-            <h4>{t}<span onClick={()=>addLikes(i)}>👍</span>{likes[i]}</h4>
-            <button onClick={chageTitle}>변경</button>
-            <p>작성일: {createDate[i]}</p>
+     {title.map((item, index) => (
+          <div key={index}>
+            <h4 onClick={()=>handleTitle(index)}>{item}
+              <span onClick={()=>addLikes(index)}>
+                👍
+              </span>{likes[index]}
+            </h4>
+            <button onClick={()=>chageTitle(index)}>
+              변경
+            </button>
+            <p>
+              작성일: {createDate[index]}
+            </p>
           </div>
       ))}
       </div>
       {/* 상세페이지 나타날 곳 */}
+      
       {modal ? <Modal /> : null}
     </div>
   )
