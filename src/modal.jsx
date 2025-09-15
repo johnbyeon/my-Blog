@@ -1,9 +1,10 @@
-function Modal(){
+function Modal(props){
   return (
-      <div className='modal'>
-        <h4>제목</h4>
-        <p>날짜</p>
-        <p>상세내용</p>
+      <div className='modal' 
+      style={{background: props.color}}>
+        <h4>{props.title[props.currentIndex]}</h4>
+        <p>{props.createDate[props.currentIndex]}</p>
+        <p>{props.details[props.currentIndex]}</p>
       </div>
   )
 }

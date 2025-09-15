@@ -21,6 +21,12 @@ function App() {
     0
   ]);
   const [status,setStatus] = useState(0);
+
+  const [details,setDetails] = useState([
+    '심플한 디자인의 코트로 가을에 잘 어울림',
+    '강남 우동의 찐 맛집! 먹어보진 않았음',
+    '자바 스터디는 말 만하고 못함'
+  ])
   //좋아요 처리함수
   function addLikes(num){
     const newLikes = [...likes];
@@ -45,11 +51,16 @@ function App() {
   }
   //모달페이지가 보이게/안보이게 작업하기 위한 스테이트
   const [modal,setModal] = useState(false);
+<<<<<<< HEAD
   const [modalStatus,setModalStatus] = useState(null);
+=======
+  const [currentIndex,setCurrentIndex] = useState(null);
+>>>>>>> 77cafb2 (모달 props 전달)
   function handleTitle(index){
 
       if(!modal){
         setModal(true);
+<<<<<<< HEAD
         setModalStatus(index);
       
       }else if(modalStatus == index){
@@ -57,6 +68,15 @@ function App() {
         setModalStatus(null);
       }else {
          setModalStatus(index);
+=======
+        setCurrentIndex(index);
+      
+      }else if(currentIndex == index){
+        setModal(false);
+        setModalStatus(null);
+      }else {
+         setCurrentIndex(index);
+>>>>>>> 77cafb2 (모달 props 전달)
       }
   }
   return (
@@ -86,7 +106,16 @@ function App() {
       </div>
       {/* 상세페이지 나타날 곳 */}
       
+<<<<<<< HEAD
       {modal ? <Modal /> : null}
+=======
+      {modal ? <Modal color='lightblue' 
+      createDate={createDate}  
+      title={title} 
+      currentIndex={currentIndex}
+      details={details}
+      /> : null}
+>>>>>>> 77cafb2 (모달 props 전달)
     </div>
   )
 }
