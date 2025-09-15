@@ -67,6 +67,7 @@ function App() {
       {/* <h4 style={{color:'red',fontSize:'16px'}}>{post}</h4> */}
       <button onClick={()=>chageTitle()}>글 정렬하기</button>
       <div className="list"> 
+
      {title.map((item, index) => (
           <div key={index}>
             <h4 onClick={()=>handleTitle(index)}>{item}
