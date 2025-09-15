@@ -59,7 +59,12 @@ function App() {
       <div className="list"> 
      {title.map((t, i) => (
           <div key={i}>
-            <h4>{t}<span onClick={()=>addLikes(i)}>👍</span>{likes[i]}</h4>
+            <h4 onClick={()=>{
+              setModal(!modal);
+            }}>{t}<span onClick={()=>addLikes(i)}>👍
+              </span>{likes[i]}
+            </h4>
+            
             <button onClick={chageTitle}>변경</button>
             <p>작성일: {createDate[i]}</p>
           </div>
