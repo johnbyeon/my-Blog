@@ -25,7 +25,7 @@ function AppBody(props){
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth()+1).padStart(2,'0');
-    const day = String(today.getDay()).padStart(2,'0');
+    const day = String(today.getDate()).padStart(2,'0');
     console.log(`${year}-${month}-${day}`);
     return `${year}-${month}-${day}`;
   }
@@ -49,7 +49,13 @@ function AppBody(props){
       setNewTitle('');
       setNewContent('');
   }
-
+  function deletePost(e,index){
+    e.stopPropagation();
+  props.setTitle(props.title.filter((_, i) => i !== index));
+  props.setDetails(props.details.filter((_, i) => i !== index));
+  props.setCreateDate(props.createDate.filter((_, i) => i !== index));
+  props.setLikes(props.likes.filter((_, i) => i !== index));
+  }
    //좋아요 처리함수
   function addLikes(num,e){
     e.stopPropagation();
@@ -70,6 +76,8 @@ function AppBody(props){
                     <span onClick={(e) => addLikes(index,e)}>
                     👍
                     </span>{props.likes[index]}
+                    &nbsp;
+                    <span onClick={(e)=>deletePost(e,index)}>❌</span>
                     </h4>
 
                     <p>
