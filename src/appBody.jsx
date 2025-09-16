@@ -1,5 +1,12 @@
+import { useState } from "react";
+
 function AppBody(props){
 
+  //타이틀 저장용 state
+  const [newTitle,setNewTitle] = useState('');
+
+  //내용 저장용 state 
+  const [newContent, setNewContent] = useState('');  
   function handleTitle(index){
       if(!props.modal){
         props.setModal(true);
@@ -13,7 +20,35 @@ function AppBody(props){
         props.setCurrentIndex(index);
       }
   }
+  //오늘날짜를 생성해 주는 함수
+  function getCurrentDate(){
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth()+1).padStart(2,'0');
+    const day = String(today.getDay()).padStart(2,'0');
+    console.log(`${year}-${month}-${day}`);
+    return `${year}-${month}-${day}`;
+  }
 
+  //글등록 함수만들기
+  function addPost(){
+      if(newTitle.trim() === ''){
+        alert('제목이 비어있어요');
+        return;
+      }
+      if(newContent.trim() === ''){
+        alert('내용이 비어있어요');
+        return;
+      }
+      //타이틀과 내용을 각 배열에 추가
+      props.setTitle([newTitle, ...props.title]);
+      props.setDetails([newContent, ...props.details])
+      //오늘 날짜 생성후 날짜 배열에도 추가
+      props.setCreateDate([getCurrentDate(), ...props.createDate]);
+      props.setLikes([0, ...props.likes]);
+      setNewTitle('');
+      setNewContent('');
+  }
 
    //좋아요 처리함수
   function addLikes(num,e){
@@ -43,6 +78,13 @@ function AppBody(props){
                 </div>
             ))}
         </div>
+        <input onChange={(e)=>{setNewTitle(e.target.value)}} 
+        value={newTitle}
+        type="text" placeholder="글 제목을 입력하세요"/>
+        <br />
+        <input onChange={(e)=>{setNewContent(e.target.value)}} 
+        value={newContent}type="text" placeholder="내용을 입력하세요"/>
+        <button onClick={addPost}>등록하기</button>
     </>
     )
 }

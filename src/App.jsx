@@ -12,9 +12,9 @@ function App() {
     '자바스터디'
   ]);
   const [createDate,setCreateDate] = useState([
-    '2025-5-1',
-    '2025-6-1',
-    '2025-7-1'
+    '2025-05-01',
+    '2025-06-01',
+    '2025-07-01'
   ])
   const [likes,setLikes] = useState([
     0,
@@ -47,10 +47,13 @@ function App() {
       likes={likes}
       setLikes={setLikes}
       createDate={createDate}
+      setCreateDate={setCreateDate}
       currentIndex={currentIndex}
       setCurrentIndex={setCurrentIndex}
       modal={modal}
       setModal={setModal}
+      setDetails={setDetails}
+      details={details}
       />
 
       {/* 상세페이지 나타날 곳 */}
